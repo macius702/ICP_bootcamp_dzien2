@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { dzien2_backend } from 'declarations/dzien2_backend/index';
 let greeting = ref('');
 let allTexts = ref([]);
@@ -17,6 +17,7 @@ async function handleGetAllTexts() {
     allTexts.value = response;
   });
 }
+onMounted(handleGetAllTexts); // Fetch all texts right after loading the page
 </script>
 
 <template>
