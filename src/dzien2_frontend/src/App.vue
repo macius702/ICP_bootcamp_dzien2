@@ -26,7 +26,7 @@ onMounted(handleGetAllTexts); // Fetch all texts right after loading the page
     <br />
     <br />
 
-    <form action="#" @submit="handleAddText">
+    <!-- <form action="#" @submit="handleAddText">
       <label for="text">Dodaj_wpis: &nbsp;</label>
       <input id="text" alt="Text" type="text" />
       <button type="submit">Add Text</button>
@@ -36,7 +36,7 @@ onMounted(handleGetAllTexts); // Fetch all texts right after loading the page
       <ul>
         <li v-for="(text, index) in allTexts" :key="index">{{ text }}</li>
       </ul>
-    </section>
+    </section> -->
     <Blog />
   </main>
 </template>
