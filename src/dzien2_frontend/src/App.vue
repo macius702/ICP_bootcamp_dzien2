@@ -2,14 +2,19 @@
 import { ref } from 'vue';
 import { dzien2_backend } from 'declarations/dzien2_backend/index';
 let greeting = ref('');
+let allTexts = ref([]);
 
-async function handleSubmit(e) {
+
+async function handleAddText(e) {
   e.preventDefault();
   const target = e.target;
-  const name = target.querySelector('#name').value;
-  const numer = target.querySelector('#numer').value;
-  await dzien2_backend.greet(name, Number(numer)).then((response) => {
-    greeting.value = response;
+  const text = target.querySelector('#text').value;
+  await dzien2_backend.add_text(text);
+}
+
+async function handleGetAllTexts() {
+  await dzien2_backend.get_all_texts().then((response) => {
+    allTexts.value = response;
   });
 }
 </script>
@@ -19,12 +24,17 @@ async function handleSubmit(e) {
     <img src="/logo2.svg" alt="DFINITY logo" />
     <br />
     <br />
-    <form action="#" @submit="handleSubmit">
-      <label for="name">Enter your name: &nbsp;</label>
-      <input id="name" alt="Name" type="text" />
-      <input id="numer" alt="Numer" type="number" />
-      <button type="submit">Click Me!</button>
+
+    <form action="#" @submit="handleAddText">
+      <label for="text">Dodaj_wpis: &nbsp;</label>
+      <input id="text" alt="Text" type="text" />
+      <button type="submit">Add Text</button>
     </form>
-    <section id="greeting">{{ greeting }}</section>
+    <button @click="handleGetAllTexts">Get All Texts</button>
+    <section id="allTexts">
+      <ul>
+        <li v-for="(text, index) in allTexts" :key="index">{{ text }}</li>
+      </ul>
+    </section>
   </main>
 </template>

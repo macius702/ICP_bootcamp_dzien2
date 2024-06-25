@@ -1,3 +1,10 @@
 service : {
     "greet": (text, int8) -> (text) query;
+    "add_text": ( text) -> () ;
+"get_all_texts": () -> (vec text) query;
+
+    
+
 }
+
+
