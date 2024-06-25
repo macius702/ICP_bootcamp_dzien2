@@ -4,12 +4,12 @@ import { dzien2_backend } from 'declarations/dzien2_backend/index';
 let greeting = ref('');
 let allTexts = ref([]);
 
-
 async function handleAddText(e) {
   e.preventDefault();
   const target = e.target;
   const text = target.querySelector('#text').value;
   await dzien2_backend.add_text(text);
+  await handleGetAllTexts(); // Fetch the updated list of all texts
 }
 
 async function handleGetAllTexts() {
