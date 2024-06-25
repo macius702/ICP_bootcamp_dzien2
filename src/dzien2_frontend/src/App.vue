@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { dzien2_backend } from 'declarations/dzien2_backend/index';
-let greeting = ref('');
+import Blog from './components/Blog.vue';
 let allTexts = ref([]);
 
 async function handleAddText(e) {
@@ -37,5 +37,6 @@ onMounted(handleGetAllTexts); // Fetch all texts right after loading the page
         <li v-for="(text, index) in allTexts" :key="index">{{ text }}</li>
       </ul>
     </section>
+    <Blog />
   </main>
 </template>
