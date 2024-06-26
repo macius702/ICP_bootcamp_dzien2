@@ -1,10 +1,12 @@
 <template>
     <div>
+        <h2 class="text-blue-600"> Wpisy na bloga</h2>
         <button @click="pobierzWpisy">refresh</button>
-        siema blog!!
+        <div v-for="wpis in wpisy">
+            <p>{{wpis}}</p>
+        </div>
         <input v-model="nowyBlog" type="text">
         <button @click="dodajWpisy">dodaj</button>
-        {{ wpisy }}
     </div>
 </template>
 
@@ -13,7 +15,9 @@ import { dzien2_backend } from 'declarations/dzien2_backend/index';
 export default {
     data() {
         return {
-            wpisy: []
+            wpisy: [],
+            nowyBlog: ''
+
         }
     },
     methods: {
@@ -28,6 +32,9 @@ export default {
          }
          
     },
+    async mounted(){
+        this.pobierzWpisy()
+    }
  
 }
 </script>
