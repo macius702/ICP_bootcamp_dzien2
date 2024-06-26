@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="flex justify-center flex-col">
-            <input v-model="nowyBlog" type="text">
+            <input v-model="nowyBlog" class="border-2 border-blue-600 p-4" type="text">
             <button @click="dodajWpisy" class="bg-blue-600 rounded-sm text-white p-4">dodaj</button>
         </div>
     </div>
