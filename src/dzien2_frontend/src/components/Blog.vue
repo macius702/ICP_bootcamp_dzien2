@@ -7,8 +7,11 @@
         <div class="grid mx-6 gap-4 my-4">
             <div v-for="(wpis, index) in wpisy" class="drop-shadow-xl bg-stone-300 p-4">
                 <p>id: {{ index }}</p>
-                <p>{{ wpis }}</p>
-                <button  class="bg-blue-600 rounded text-white p-4" @click="deleteWpis(index)">usun</button>
+                <p v-if="editIndex !== index">{{ wpis }}</p>
+                <input v-else v-model="editText" type="text">
+                <button v-if="editIndex !== index" class="bg-blue-600 rounded text-white p-4" @click="deleteWpis(index)">usun</button>
+                <button v-if="editIndex !== index" class="bg-green-600 rounded text-white p-4" @click="startEdit(index, wpis)">edit</button>
+                <button v-else class="bg-green-600 rounded text-white p-4" @click="saveWpis">save</button>
             </div>
         </div>
         <div class="flex justify-center flex-col">
@@ -24,11 +27,22 @@ export default {
     data() {
         return {
             wpisy: [],
-            nowyBlog: ''
+            nowyBlog: '',
+            editIndex: null,
+            editText: ""            
 
         }
     },
     methods: {
+        startEdit(index, wpis) {
+            this.editIndex = index;
+            this.editText = wpis;
+        },
+        async saveWpis() {
+            await dzien2_backend.edit_text(this.editIndex, this.editText);
+            this.editIndex = null;
+            this.pobierzWpisy();
+        },
         async dodajWpisy() {
             await dzien2_backend.add_text(this.nowyBlog);
             this.pobierzWpisy();
