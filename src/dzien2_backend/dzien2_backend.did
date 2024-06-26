@@ -1,9 +1,9 @@
 service : {
     "greet": (text, int8) -> (text) query;
     "add_text": ( text) -> () ;
-"get_all_texts": () -> (vec text) query;
-
-    
+    "get_all_texts": () -> (vec text) query;
+    "delete_text" : (nat64) -> ();
+    "edit_text" : (nat64, text) ->();
 
 }
 
